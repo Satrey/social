@@ -11,11 +11,11 @@ def user_login(request):
             cd = form.cleaned_data
             user = authenticate(request, username=cd['username'], password=cd['password'])
             if user is not None:
-                if user.is_active():
+                if user.is_active:
                     login(request, user)
-                    return HttpResponse('Authentication successful')
+                    return HttpResponse('<h1>Authentication successful</h1>')
                 else:
-                    return HttpResponse('Authentication failed')
-        else:
-            form = LoginForm()
-            return render(request, 'account/login.html', {'form': form})
+                    return HttpResponse('<h1>Authentication failed</h1>')
+    else:
+        form = LoginForm()
+    return render(request, 'account/login.html', {'form': form})
