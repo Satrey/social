@@ -4,7 +4,10 @@
 
 {% block content %}
 
-<h1>Log-In</h1>
+<div class="container">
+    <h1 class="text-center mt-5 shadow txt-shadow p-3">Log-In</h1>
+    <hr class="mt-5">
+</div>
 
 {% if form.errors %}
     <p>
@@ -12,15 +15,22 @@
         Please try again
     </p>
 {% else %}
-    <p>Please, use the following form to log-in:</p>
+    <h5 class="text-center mt-5 txt-shadow ">Пожалуйста ипользуйте эту форму для входа</h5>
 {% endif %}
-<div class="login-form">
-    <form action="{% url 'login' %}" method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next }}" />
-        <p><input type="submit" value="Log-In"/></p>
-    </form>
+
+<div class="container mt-5 login-form">
+    <div class="row d-flex">
+        <div class="col"></div>
+        <div class="col-md-4 card shadow p-4">
+            <form action="{% url 'login' %}" method="post">
+                {{ form.as_p }}
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}" />
+                <p><input class="btn btn-primary" type="submit" value="Log-In"/></p>
+            </form>
+        </div>
+        <div class="col"></div>
+    </div>
 </div>
 
 {% endblock %}
